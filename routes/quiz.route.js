@@ -1,12 +1,15 @@
 const express = require('express');
+const { verifyAuth } = require('../middlewares/auth.middleware');
 const router = express.Router();
 const Quiz = require('../models/quiz.model')
 
 router.route('/')
-    .get((req,res)=>{
-        res.json({message:"Quiz route"})
+    .get(async(req,res)=>{
+        const quizData = await Quiz.find({})
+        res.json({success:true,quizData})
     })
 
+router.use(verifyAuth)
 router.route('/add')
     .post(async(req,res)=>{
         try{
