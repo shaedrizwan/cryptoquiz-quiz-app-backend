@@ -11,7 +11,10 @@ const quizSchema = new Schema({
         type:Number,
         required:["Number of questions required"]
     },
-    points:Number,
+    description:{
+        type:String,
+        required:["Description required"]
+    },
     questions:[
         {
             question:String,
