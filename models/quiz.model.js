@@ -24,7 +24,10 @@ const quizSchema = new Schema({
             }]
         }
     ],
-    leaderboard:[{type:mongoose.Types.ObjectId,ref:User}]
+    leaderboard:[{
+        user:{type:mongoose.Types.ObjectId,ref:User},
+        score:Number
+    }]
 })
 
 module.exports = mongoose.model('Quiz',quizSchema)

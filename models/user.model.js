@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Quiz = require('./quiz.model')
-
 
 
 const userSchema = new Schema({
@@ -21,11 +19,7 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:["Password required"]
-    },
-    myHighScores:[{
-        quiz:{type:Schema.Types.ObjectId,ref:Quiz},
-        score:Number
-    }]
+    }
 })
 
 module.exports = mongoose.model('User',userSchema)
