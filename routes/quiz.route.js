@@ -15,11 +15,12 @@ router.route('/leaderboard')
         try{
             const {id} = req.body
             const quiz = await Quiz.findById(id).populate('leaderboard.user')
-            quiz.leaderboard.map(leader => {
-                leader.user.password = undefined
-                leader.user.__v = undefined
+            const leaderboard = quiz.leaderboard.sort((a,b)=>b.score-a.score)
+            leaderboard.map(standing => {
+                standing.user.password = undefined
+                standing.user.__v = undefined
             })
-            res.json({success:true,leaderboard:quiz.leaderboard})
+            res.json({success:true,leaderboard})
         }catch(err){
             res.json({success:false,error:err.message})
         }
